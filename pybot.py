@@ -36,7 +36,7 @@ def hello_world(update, context):
         return 0
 def variavel(update, context):
     try:
-        update.message.reply_text("Uma variável pode ser imaginada como um \"caixa\" para armazenar valores de dados. Esta caixa só pode armazenar um único valor por vez. No entanto, o valor armazenado na caixa pode mudar inúmeras vezes durante a execução do algoritmo. Em um ambiente computacional de verdade, a caixa correspondente a uma variável é uma posição da memória do computador.")
+        update.message.reply_text("Uma variável pode ser imaginada como um \"caixa\" para armazenar valores de dados. Esta caixa só pode armazenar um único valor por vez. No entanto, o valor armazenado na caixa pode mudar inúmeras vezes durante a execução do algoritmo. Em um ambiente computacional de verdade, a caixa correspondente a uma variável é uma posição da memória do computador.")
     except Exception as e:
         print(str(e))
         return 0
@@ -46,21 +46,7 @@ def error(update, context):
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 def welcome(update, context):
-    for new_user_obj in update.message.new_chat_members:
-        open("logs/logs_" + time.strftime('%d_%m_%Y') + ".txt","w").write("\nupdate status: " + str(context))
-        try:
-            new_user = "@" + new_user_obj['username']
-        except Exception as e:
-            new_user = new_user_obj['first_name'];
-
-        message_list = ["Seja bem vindo " + new_user]
-        chat_id = update.message.chat.id
-        new_user = ""
-        message_rnd = random.choice(message_list)
-        WELCOME_MESSAGE = open('message/' + message_rnd , 'r').read().replace("\n", "")
-
-
-        update.sendMessage(chat_id=chat_id, text=WELCOME_MESSAGE.replace("{{username}}",str(new_user)), parse_mode='HTML')
+    print("Em construção")
 
 
 def main():
