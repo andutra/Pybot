@@ -6,7 +6,7 @@ import logging, sys
 import time
 import random
 
-API_TOKEN = 'YOUR API HERE'
+API_TOKEN = 'YOUR TOKEN HERE'
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -36,7 +36,7 @@ def hello_world(update, context):
         return 0
 def variavel(update, context):
     try:
-        update.message.reply_text("Uma variável pode ser imaginada como um \"caixa\" para armazenar valores de dados. Esta caixa só pode armazenar um único valor por vez. No entanto, o valor armazenado na caixa pode mudar inúmeras vezes durante a execução do algoritmo. Em um ambiente computacional de verdade, a caixa correspondente a uma variável é uma posição da memória do computador.")
+        update.message.reply_text("Uma variável pode ser imaginada como um \"caixa\" para armazenar valores de dados. Esta caixa só pode armazenar um único valor por vez. No entanto, o valor armazenado na caixa pode mudar inúmeras vezes durante a execução do algoritmo. Em um ambiente computacional de verdade, a caixa correspondente a uma variável é uma posição da memória do computador.")
     except Exception as e:
         print(str(e))
         return 0
@@ -45,8 +45,19 @@ def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
-def welcome(update, context):
-    print("Em construção")
+def welcome(update, dsp):
+    for new_user_obj in update.message.new_chat_members:
+        new_user = ""
+        try:
+            new_user = "@" + new_user_obj['username']
+        except Exception as e:
+            new_user = new_user_obj['first_name'];
+
+        message_list = ["Seja bem vindo {{username}}", "Olá {{username}} espero que você possa aprender muito nesse grupo"] 
+        chat_id = update.message.chat.id
+        message_rnd = random.choice(message_list)
+
+        dsp.bot.sendMessage(chat_id=chat_id, text=message_rnd.replace("{{username}}",str(new_user)), parse_mode='HTML')
 
 
 def main():
