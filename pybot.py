@@ -53,7 +53,7 @@ def welcome(update, dsp):
         except Exception as e:
             new_user = new_user_obj['first_name'];
 
-        message_list = ["Seja bem vindo {{username}}", "Olá {{username}} espero que você possa aprender muito nesse grupo"] 
+        message_list = ["Seja bem vindo {{username}}", "Olá {{username}} espero que você possa aprender muito nesse grupo", "Que bom que você entrou {{username}}, vamos todos aprender muito!"] 
         chat_id = update.message.chat.id
         message_rnd = random.choice(message_list)
 
