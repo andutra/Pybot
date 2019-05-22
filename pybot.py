@@ -101,7 +101,7 @@ def main():
 
             rgxHandlers = {"[Hh]ello [Ww]orld": hello_world 
                            ,"[Oo] que ([eé]|s[aã]o)( uma)? [Vv]ari[aá]ve[l|is]": variavel
-                           ,"[Oo] que ([eé]|s[aã]o)( uma)? [Ss]tring", string_reply
+                           ,"[Oo] que ([eé]|s[aã]o)( uma)? [Ss]tring": string_reply
                            ,"(^|\W)[Pp]y[Bb]ot(\W|$)": call_my_name
                           }
             
