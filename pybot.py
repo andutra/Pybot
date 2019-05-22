@@ -14,9 +14,11 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
+#Function called when /start is sended to bot
 def start(update, context):
     msg = update.message.reply_text("Ola como posso te ajudar?")
 
+#Function called when the Pybot name is said
 def call_my_name(update, context):
     print("Alguém disse meu nome")
     frases = [u'\U0001F610' + " Sem tempo irmão", "Olá eu sou o bot que auxilia nesse grupo, tudo bem?"]
@@ -28,19 +30,34 @@ def call_my_name(update, context):
        print(str(e))
        return 0
 
+#Function called when 'Hello World' is said 
 def hello_world(update, context):
     try:
         update.message.reply_text("Opa, eu sei fazer um Hello World.\nprint(\"Hello World\")")
     except Exception as e:
         print(str(e))
         return 0
+      
+#Function called when 'O que é uma variável' is said 
 def variavel(update, context):
     try:
-        update.message.reply_text("Uma variável pode ser imaginada como um \"caixa\" para armazenar valores de dados. Esta caixa só pode armazenar um único valor por vez. No entanto, o valor armazenado na caixa pode mudar inúmeras vezes durante a execução do algoritmo. Em um ambiente computacional de verdade, a caixa correspondente a uma variável é uma posição da memória do computador.")
+        update.message.reply_text("Uma variável pode ser imaginada como um \"caixa\" para armazenar valores de dados." + \
+        "Esta caixa só pode armazenar um único valor por vez. No entanto, o valor armazenado na caixa pode mudar inúmeras" + \
+        "vezes durante a execução do algoritmo. Em um ambiente computacional de verdade, a caixa correspondente a uma variável" + \
+        "é uma posição da memória do computador.")
     except Exception as e:
         print(str(e))
         return 0
 
+#Function called when 'O que é uma string' is said       
+def string(update, context):
+    try:
+        update.message.reply_text("Uma string é uma cadeia de caracteres, ela pode ser entendida como uma lista de caracteres." + \
+                                 "Por exemplo, 'abcde', é um lista que contém os caracteres 'a', 'b', 'c','d' e 'e'.)
+    except Exception as e:
+        print(str(e))
+        return 0
+      
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
@@ -53,11 +70,15 @@ def welcome(update, dsp):
         except Exception as e:
             new_user = new_user_obj['first_name'];
 
-        message_list = ["Seja bem vindo {{username}}", "Olá {{username}} espero que você possa aprender muito nesse grupo", "Que bom que você entrou {{username}}, vamos todos aprender muito!"] 
+        message_list = ["Seja bem vindo {{username}}" 
+                        ,"Olá {{username}} espero que você possa aprender muito nesse grupo"
+                        ,"Que bom que você entrou {{username}}, vamos todos aprender muito!"
+                       ] 
         chat_id = update.message.chat.id
         message_rnd = random.choice(message_list)
 
         dsp.bot.sendMessage(chat_id=chat_id, text=message_rnd.replace("{{username}}",str(new_user)), parse_mode='HTML')
+
 
 
 def main():
@@ -76,7 +97,11 @@ def main():
             for cmd in cmds.items():
                 dp.add_handler(CommandHandler(cmd[0], cmd[1]))
 
-            rgxHandlers = {"(^|\W)[Bb]ot(\W|$)": call_my_name, "[Hh]ello [Ww]orld": hello_world, "[Oo] que ([eé]|s[aã]o)( uma)? [Vv]ari[aá]ve[l|is]": variavel}
+            rgxHandlers = {"[Hh]ello [Ww]orld": hello_world 
+                           ,"[Oo] que ([eé]|s[aã]o)( uma)? [Vv]ari[aá]ve[l|is]": variavel
+                           ,"[Oo] que ([eé]|s[aã]o)( uma)? [Ss]tring", string
+                           ,"(^|\W)[Bb]ot(\W|$)": call_my_name
+                          }
             
             for handler in rgxHandlers.items():
                 dp.add_handler(MessageHandler(Filters.regex(handler[0]), handler[1]))
