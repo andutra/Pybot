@@ -50,7 +50,7 @@ def variavel(update, context):
         return 0
 
 #Function called when 'O que é uma string' is said       
-def string(update, context):
+def string_reply(update, context):
     try:
         update.message.reply_text("Uma string é uma cadeia ou sequencia de caracteres, ela pode ser entendida como uma lista" + \
                                   "de caracteres utilizada para representar uma palavra, frase ou texto em um programa.\n" + \
@@ -101,8 +101,8 @@ def main():
 
             rgxHandlers = {"[Hh]ello [Ww]orld": hello_world 
                            ,"[Oo] que ([eé]|s[aã]o)( uma)? [Vv]ari[aá]ve[l|is]": variavel
-                           ,"[Oo] que ([eé]|s[aã]o)( uma)? [Ss]tring", string
-                           ,"(^|\W)[Bb]ot(\W|$)": call_my_name
+                           ,"[Oo] que ([eé]|s[aã]o)( uma)? [Ss]tring", string_reply
+                           ,"(^|\W)[Pp]y[Bb]ot(\W|$)": call_my_name
                           }
             
             for handler in rgxHandlers.items():
