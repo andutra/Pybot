@@ -53,7 +53,7 @@ def variavel(update, context):
 def string_reply(update, context):
     try:
         update.message.reply_text("Uma string é uma cadeia ou sequência de caracteres, ela pode ser entendida como uma lista" + \
-                                  "de caracteres utilizada para representar uma palavra, frase ou texto em um programa.\n" + \
+                                  " de caracteres utilizada para representar uma palavra, frase ou texto em um programa.\n" + \
                                  "Por exemplo, 'abcde', é um lista que contém os caracteres 'a', 'b', 'c','d' e 'e'\n." + \
                                  "Veja aqui uma explicação bem completa: https://pt.wikipedia.org/wiki/Cadeia_de_caracteres")
     except Exception as e:
