@@ -64,6 +64,7 @@ def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
+#Function called when a new member enter to the group
 def welcome(update, dsp):
     for new_user_obj in update.message.new_chat_members:
         new_user = ""
