@@ -3,10 +3,12 @@
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters # pip install python-telegram-bot
 import logging, sys
-import time
+import os
 import random
 
-API_TOKEN = 'YOUR TOKEN HERE'
+
+
+API_TOKEN = os.environ['PyBotApi']
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
